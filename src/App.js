@@ -1,44 +1,41 @@
 import React from "react";
 
-function Food({name, picture}){
-  return <div>
-    <h1>I like {name}</h1>
-    <img src={picture} />
-    </div>;
-}
-
-const foodILike=[
-  {
-    name : "Kimchi",
-    image:"https://static.toiimg.com/thumb/66440952/road-trip.jpg?width=1200&height=900"
-  },
-  {
-    name: "Samgyeopsal",
-    image: "https://pds.joins.com/news/component/htmlphoto_mmdata/201702/27/117f5b49-1d09-4550-8ab7-87c0d82614de.jpg"
-  },
-  {
-    name: "Bibimbap",
-    image: "https://retreatmi.com/files/destinations-logo/5e5224aa3718e.jpg"
-  },
-  {
-    name: "Doncasu",
-    image: "https://img.koreatimes.co.kr/upload/newsV2/images/201907/788cde395d2b40beac45010ce455522c.jpg/dims/resize/740/optimize"
-  },
-  {
-    name: "Kimbap",
-    image: "https://cdn.mos.cms.futurecdn.net/rwow8CCG3C3GrqHGiK8qcJ-1200-80.jpg"
-  }];
-
-function renderFood(dish){
-  console.log(dish);
-  return <Food name={dish.name}  picture={dish.image} />
-}
-function App() {
-  return (
-    <div>
-      {foodILike.map(renderFood) }
-    </div>
-  );
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    console.log("hello");
+  }
+  state ={
+    // state is an object
+    count: 0
+  };
+  add = () => {
+    // this.setState({count:1});
+    // this.setState({count:this.state.count+1});
+    this.setState(current => ({count: current.count+1}));
+  };
+  minus = () => {
+    // this.setState({count:-1});
+    // this.setState({count:this.state.count-1});
+    this.setState(current => ({count: current.count-1}));
+  };
+  componentDidMount(){
+    console.log("component rendered");
+  }
+  componentDidUpdate(){
+    console.log("just updated");
+  }
+  componentWillUnmount(){
+    console.log("bye");
+  }
+    render(){
+      console.log("rendering");
+      return <div>
+        <h1>The number is: {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+        </div>
+    }
 }
 
 export default App;
