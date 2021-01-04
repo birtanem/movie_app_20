@@ -29,10 +29,14 @@ const foodILike=[
     image: "https://cdn.mos.cms.futurecdn.net/rwow8CCG3C3GrqHGiK8qcJ-1200-80.jpg"
   }];
 
+function renderFood(dish){
+  console.log(dish);
+  return <Food name={dish.name}  picture={dish.image} />
+}
 function App() {
   return (
     <div>
-      {foodILike.map(dish => (<Food name={dish.name} picture={dish.image}/>)) }
+      {foodILike.map(renderFood) }
     </div>
   );
 }
