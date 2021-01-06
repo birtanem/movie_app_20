@@ -1,28 +1,28 @@
 import React from "react";
 import axios from "axios";
-
 import Movie from "./Movie";
 
-
-class App extends React.Component{
-  state = {
+class App extends React.Component {
+ state = {
     isLoading: true,
     movies: []
   };
-  getMovies = async () =>{
-    const {data:{data:movies}} = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
-    this.setState({movies:movies, isLoading:false});
-    // this.setState({movies, isLoading:false});
-    console.log(this.state.movies);
+  getMovies = async () => {
+    const { //{} 갯수 체크 잘하기!
+      data:{
+        data:{movies}
+      }
+    } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
+    // this.setState({movies:movies, isLoading:false});
+    this.setState({movies, isLoading:false});
   };
   componentDidMount(){
     this.getMovies();
   }
     render(){
       const {isLoading, movies} = this.state;
-      const {movies = []} = this.props;
       // console.log(isLoading);
-      return <div>
+      return (<div>
         {isLoading ? "Loading":
         movies.map(movie => (
           <Movie 
@@ -32,10 +32,9 @@ class App extends React.Component{
           title={movie.title} 
           summary={movie.summary} 
           poster={movie.medium_cover_image}/>
-        )
-        )
+        ))
         }
-        </div>;
+        </div>);
     }
 }
 
